@@ -24,7 +24,7 @@ class CreatureDAO {
         while ($creatureBD = mysqli_fetch_array($result)) {
 
             $creature = new Creature();
-            $creature->setIdCreature($creatureBD["id"]);
+            $creature->setIdCreature($creatureBD["idcreature"]);
             $creature->setName($creatureBD["name"]);
             $creature->setDescription($creatureBD["description"]);
             $creature->setAvatar($creatureBD["avatar"]);
@@ -53,7 +53,7 @@ class CreatureDAO {
     }
 
     public function selectById($id) {
-        $query = "SELECT name, description, avatar, attackPower, lifeLevel, weapon FROM " . CreatureDAO::CREATURE_TABLE . " WHERE id=?";
+        $query = "SELECT name, description, avatar, attackPower, lifeLevel, weapon FROM " . CreatureDAO::CREATURE_TABLE . " WHERE idcreature=?";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
@@ -76,7 +76,7 @@ class CreatureDAO {
     public function update($creature) {
         $query = "UPDATE " . CreatureDAO::CREATURE_TABLE .
                 " SET name=?, description=?, avatar=?, attackPower=?, lifeLevel=?, weapon=?"
-                . " WHERE id=?";
+                . " WHERE idcreature=?";
         $stmt = mysqli_prepare($this->conn, $query);
         $name = $creature->getName();
         $description = $creature->getDescription();
@@ -90,7 +90,7 @@ class CreatureDAO {
     }
     
     public function delete($id) {
-        $query = "DELETE FROM " . CreatureDAO::CREATURE_TABLE . " WHERE id =?";
+        $query = "DELETE FROM " . CreatureDAO::CREATURE_TABLE . " WHERE idcreature=?";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'i', $id);
         return $stmt->execute();

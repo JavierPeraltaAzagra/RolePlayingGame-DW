@@ -1,9 +1,9 @@
 <?php
 //Es necesario que importemos los ficheros creados con anterioridad porque los vamos a utilizar desde este fichero.
-require_once(dirname(__FILE__) . '/../../../persistence/DAO/OfferDAO.php');
-require_once(dirname(__FILE__) . '/../../models/Offer.php');
+require_once(dirname(__FILE__) . '\..\..\..\persistence\DAO\CreatureDAO.php');
+require_once(dirname(__FILE__) . '\..\..\models\Creature.php');
 
-$offerDAO = new CreatureDAO();
+$creatureDAO = new CreatureDAO();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 //Llamo que hace la edición contra BD
@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 function deleteAction() {
     $id = $_GET["id"];
 
-    $offerDAO = new CreatureDAO();
-    $offerDAO->delete($id);
+    $creatureDAO = new CreatureDAO();
+    $creatureDAO->delete($id);
 
     header('Location: ../../../index.php');
 }

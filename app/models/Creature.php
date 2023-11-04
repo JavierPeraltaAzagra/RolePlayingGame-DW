@@ -76,9 +76,10 @@ class Creature {
         $result .= '<div class="card-block">';
         $result .= '<h2 class="card-title">' . $this->getName() . '</h2>';
         $result .= '<p class=" card-text description">' . $this->getDescription() . '</p>';
+        $result .= '<img class=" card-image" src="' . $this->getAvatar() . '"/>';
         $result .= '</div>';
         $result .= ' <div  class=" btn-group card-footer" role="group">';
-        $result .= '<a type="button" class="btn btn-secondary" href="creature/detail.php?id=' . $this->getIdCreature() . '">Detalles</a>';
+        $result .= '<a type="button" class="btn btn-secondary" href="./app/views/creature/detail.php?id=' . $this->getIdCreature() . '">Detalles</a>';
         $result .= '<a type="button" class="btn btn-success" href="creature/edit.php?id=' . $this->getIdCreature() . '">Modificar</a> ';
         $result .= '<a type="button" class="btn btn-danger" href="../../controllers/creature/deleteController.php?id=' . $this->getIdCreature() . '">Borrar</a> ';
         $result .= ' </div>';

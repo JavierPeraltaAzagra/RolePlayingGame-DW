@@ -1,15 +1,13 @@
 <?php
 //Es necesario que importemos los ficheros creados con anterioridad porque los vamos a utilizar desde este fichero.
-require_once(dirname(__FILE__) . '\..\..\..\..\persistence\DAO\OfferDAO.php');
-require_once(dirname(__FILE__) . '\..\..\..\models\Offer.php');
-// Analize session
-require_once(dirname(__FILE__) . '\..\..\..\..\utils\SessionUtils.php');
+require_once(dirname(__FILE__) . '\..\..\..\persistence\DAO\CreatureDAO.php');
+require_once(dirname(__FILE__) . '\..\..\models\Creature.php');
 //Compruebo que me llega por GET el parámetro
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    //Creamos un objeto OfferDAO para hacer las llamadas a la BD
-    $offerDAO = new OfferDAO();
-    $offer = $offerDAO->selectById($id);
+    
+    $creatureDAO = new CreatureDAO();
+    $creature = $creatureDAO->selectById($id);
 }
 ?>
 <!DOCTYPE html>
@@ -20,92 +18,55 @@ if (isset($_GET["id"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Artean</title>
+        <title>Pokemon
+        </title>
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     </head>
     <body>
          <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../../../../index.php"><img src="../../../../assets/img/small-logo.png" alt="" ></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <?php
-                if (SessionUtils::loggedIn())
-                {
-                ?>
-                 <ul class="navbar-nav ">
-                    <li class="nav-item ">
-                        <a  class="nav-link " href="contact.php">Contactar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a  class="nav-link " href="../../public/views/user/logout.php">Salir</a>
-                    </li>
-                </ul>
-                <?php
-                    $loggedin = true;
-                    echo "<span class='badge badge-success  '> Has iniciado sesión: " . $_SESSION['user'] . "</span>";
-                }
-                else
-                {
-                ?>   
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a  class="nav-link " href="user/signup.php">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a  class="nav-link " href="contact.php">Contactar</a>
-                    </li>
-                    <li class="nav-item ">
-
-                    </li>
-                </ul>
-                <?php
-                     $loggedin = false;
-                    // En caso de no estar registrado redirigimos a la visualización pública
-                    echo " <span class='badge badge-danger mr-2'> regístrate o inicia sesión.</span>";
-                }
-                ?>
-            </div>  
+            <a class="navbar-brand" href="#"><img class="img-fluid" style="width: 10rem; height: 4rem;" src="../../../assets/img/small-logo.png" alt="" ></a>
         </nav>
         <!-- Page Content -->
         <div class="container">
             <div class="card" >
                 <div class="card-block">
                     <h2 class="card-title"> <?php  
-                            echo (isset($_GET["id"])? $offer->getCompany() : "") ;                    
+                            echo (isset($_GET["id"])? $creature->getName() : "") ;                    
                      ?></h2>
+                    <img class=" card-image" src="<?php 
+                            echo (isset($_GET["id"])? $creature->getAvatar() : "") ;    
+                            ?>"/><br>
                     <i class=" card-text description"> <?php 
-                            echo (isset($_GET["id"])? $offer->getPosition() : "") ;    
-                    ?></i>  
+                            echo (isset($_GET["id"])? $creature->getDescription() : "") ;    
+                            ?></i> <br>
                     <p class=" card-text description"> <?php 
-                            echo (isset($_GET["id"])? $offer->getFunction() : "") ;    
-                    ?></p>  
+                            echo (isset($_GET["id"])? $creature->getattackPower() : "") ;    
+                    ?> attack power</p> 
+                    <p class=" card-text description"> <?php 
+                            echo (isset($_GET["id"])? $creature->getLifeLevel() : "") ;    
+                    ?> hp</p> 
+                    <p class=" card-text description"> <?php 
+                            echo (isset($_GET["id"])? $creature->getWeapon() : "") ;    
+                    ?></p> 
                 </div>
-                <?php  
-                if($loggedin)
-                {
-                ?>
                 
                 <div  class=" btn-group card-footer" role="group">
                     <a type="button" class="btn btn-success" href="edit.php?id=<?php 
-                            echo (isset($_GET["id"])? $offer->getIdOffer() : "") ;    
+                            echo (isset($_GET["id"])? $creature->getIdCreature() : "") ;    
                     ?><">Modificar</a> 
-                    <a type="button" class="btn btn-danger" href="../../../controllers/offer/deleteController.php?id=<?php 
-                            echo (isset($_GET["id"])? $offer->getIdOffer() : "") ;    
+                    <a type="button" class="btn btn-danger" href="../../controllers/creature/deleteController.php?id=<?php 
+                            echo (isset($_GET["id"])? $creature->getIdCreature() : "") ;    
                     ?><?>">Borrar</a> 
                 </div>
                 
-                <?php
-                }?>
             </div>
             <!-- Footer -->
             <footer>
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Copyright &copy; A. F. 2017</p>
+                        <p>Copyright &copy; J. P. 2023</p>
                     </div>
                 </div>
             </footer>
