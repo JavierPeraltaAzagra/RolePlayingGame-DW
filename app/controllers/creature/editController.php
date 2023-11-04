@@ -1,7 +1,7 @@
 <?php
 //Es necesario que importemos los ficheros creados con anterioridad porque los vamos a utilizar desde este fichero.
-require_once(dirname(__FILE__) . '/../../../persistence/DAO/OfferDAO.php');
-require_once(dirname(__FILE__) . '/../../../app/models/Offer.php');
+require_once(dirname(__FILE__) . '/../../../persistence/DAO/CreatureDAO.php');
+require_once(dirname(__FILE__) . '/../../../app/models/Creature.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Llamo a la función en cuanto se redirige el action a esta página mediante metodo POST
     editAction();
@@ -10,18 +10,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function editAction() {
     // Obtención de los valores del formulario y validación    
     $id = $_POST["id"];
-    $company = $_POST["company"];
-    $position = $_POST["position"];
-    $function = $_POST["function"];
+    $name = $_POST["name"];
+    $description = $_POST["description"];
+    $avatar = $_POST["avatar"];
+    $attackPower = $_POST["attackPower"];
+    $lifeLevel = $_POST["lifeLevel"];
+    $weapon = $_POST["weapon"];
     // Creación de objeto auxiliar   
-    $offer = new Creature();
-    $offer->setIdCreature($id);
-    $offer->setName($company);
-    $offer->setDescription($position);
-    $offer->setAvatar($function);
-    //Creamos un objeto OfferDAO para hacer las llamadas a la BD
-    $offerDAO = new CreatureDAO();
-    $offerDAO->update($offer);
+    $creature = new Creature();
+    $creature->setIdCreature($id);
+    $creature->setName($name);
+    $creature->setDescription($description);
+    $creature->setAvatar($avatar);
+    $creature->setAttackPower($attackPower);
+    $creature->setLifeLevel($lifeLevel);
+    $creature->setWeapon($weapon);
+    
+    $creatureDAO = new CreatureDAO();
+    $creatureDAO->update($creature);
 
     header('Location: ../../../index.php');
 }

@@ -80,8 +80,8 @@ class Creature {
         $result .= '</div>';
         $result .= ' <div  class=" btn-group card-footer" role="group">';
         $result .= '<a type="button" class="btn btn-secondary" href="./app/views/creature/detail.php?id=' . $this->getIdCreature() . '">Detalles</a>';
-        $result .= '<a type="button" class="btn btn-success" href="creature/edit.php?id=' . $this->getIdCreature() . '">Modificar</a> ';
-        $result .= '<a type="button" class="btn btn-danger" href="../../controllers/creature/deleteController.php?id=' . $this->getIdCreature() . '">Borrar</a> ';
+        $result .= '<a type="button" class="btn btn-success" href="./app/views/creature/edit.php?id=' . $this->getIdCreature() . '">Modificar</a> ';
+        $result .= '<a type="button" class="btn btn-danger" href="./app/controllers/creature/deleteController.php?id=' . $this->getIdCreature() . '">Borrar</a> ';
         $result .= ' </div>';
         $result .= '</div>';
         $result .= '</div>';

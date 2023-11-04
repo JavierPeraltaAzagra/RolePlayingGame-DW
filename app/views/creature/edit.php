@@ -1,14 +1,12 @@
 <?php
 //Es necesario que importemos los ficheros creados con anterioridad porque los vamos a utilizar desde este fichero.
-require_once(dirname(__FILE__) . '\..\..\..\..\persistence\DAO\OfferDAO.php');
-require_once(dirname(__FILE__) . '\..\..\..\models\Offer.php');
-// Analize session
-require_once(dirname(__FILE__) . '\..\..\..\..\utils\SessionUtils.php');
+require_once(dirname(__FILE__) . '\..\..\..\persistence\DAO\CreatureDAO.php');
+require_once(dirname(__FILE__) . '\..\..\models\Creature.php');
 //Compruebo que me llega por GET el parámetro
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    $creatureDAO = new OfferDAO();
+    $creatureDAO = new CreatureDAO();
     $creature = $creatureDAO->selectById($id);
 }
 ?>
@@ -27,54 +25,51 @@ if (isset($_GET["id"])) {
     <body>
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../../../../index.php"><img src="../../../../assets/img/small-logo.png" alt="" ></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                    <li class="nav-item ">
-                        <a  class="nav-link " href="contact.php">Contactar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a  class="nav-link " href="../../public/views/user/logout.php">Salir</a>
-                    </li>
-                </ul>
-                <?php
-                if (SessionUtils::loggedIn())
-                    echo "<span class='badge badge-success  '> Has iniciado sesión: " . $_SESSION['user'] . "</span>";
-                else {
-                    // En caso de no estar registrado redirigimos a la visualización pública
-                    header('Location: ../../public/views/index.php');
-                }
-                ?>
-            </div>  
+            <a class="navbar-brand" href="#"><img class="img-fluid" style="width: 10rem; height: 4rem;" src="../../../assets/img/small-logo.png" alt="" ></a>
         </nav>
         <!-- Page Content -->
         <div class="container">
-            <form class="form-horizontal" method="post" action="../../../controllers/offer/editController.php">
+            <form class="form-horizontal" method="post" action="../../controllers/creature/editController.php">
                 <div class="form-group">
-                    <label for="company" class="col-sm-2 control-label">Company</label>
+                    <label for="name" class="col-sm-2 control-label">Pokemon</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="company" id="company" placeholder="Empresa" value="<?php echo $creature->getCompany(); ?>">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Pokemon" value="<?php echo $creature->getName(); ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="position" class="col-sm-2 control-label">Position</label>
+                    <label for="description" class="col-sm-2 control-label">Descripción</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="position" name="position" placeholder="Cargo" value="<?php echo $creature->getPosition(); ?>">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Descripción" value="<?php echo $creature->getDescription(); ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="function" class="col-sm-2 control-label">Function</label>
+                    <label for="avatar" class="col-sm-2 control-label">Foto</label>
                     <div class="col-sm-10">
-                        <input type="textbox" class="form-control" id="function" name="function" placeholder="Función" value="<?php echo $creature->getFunction(); ?>">
+                        <input type="text" class="form-control" id="avatar" name="avatar" placeholder="Foto" value="<?php echo $creature->getAvatar(); ?>">
                     </div>
                 </div>
-                <input type="hidden" name="id" value="<?php echo $creature->getIdOffer(); ?>">
+                <div class="form-group">
+                    <label for="attackPower" class="col-sm-2 control-label">Ataque</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="attackPower" name="attackPower" placeholder="Ataque" value="<?php echo $creature->getAttackPower(); ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lifeLevel" class="col-sm-2 control-label">Vida</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lifeLevel" name="lifeLevel" placeholder="Vida" value="<?php echo $creature->getLifeLevel(); ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="weapon" class="col-sm-2 control-label">Tipo</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="weapon" name="weapon" placeholder="Tipo" value="<?php echo $creature->getWeapon(); ?>">
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $creature->getIdCreature(); ?>">
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Edit</button>
+                        <button type="submit" class="btn btn-default">Editar</button>
                     </div>
                 </div>
             </form>
@@ -82,7 +77,7 @@ if (isset($_GET["id"])) {
             <footer>
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Copyright &copy; A. F. 2017</p>
+                        <p>Copyright &copy; J. P. 2023</p>
                     </div>
                 </div>
             </footer>
