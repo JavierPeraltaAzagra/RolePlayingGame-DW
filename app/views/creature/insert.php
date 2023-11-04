@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Artean</title>
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"><img class="img-fluid" style="width: 10rem; height: 4rem;" src="../../../assets/img/small-logo.png" alt="" ></a>
+        </nav>
+       <!-- Page Content -->
+        <div class="container">
+            <form class="form-horizontal" method="post" action="../../controllers/creature/insertController.php">
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Pokemon</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="title" placeholder="Pokemon" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Descripción</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Descripción" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="avatar" class="col-sm-2 control-label">Foto</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="avatar" name="avatar" placeholder="Foto" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="attackPower" class="col-sm-2 control-label">Ataque</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="attackPower" name="attackPower" placeholder="Ataque" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lifeLevel" class="col-sm-2 control-label">Vida</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lifeLevel" name="lifeLevel" placeholder="Vida" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="weapon" class="col-sm-2 control-label">Tipo</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="weapon" name="weapon" placeholder="Tipo" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Crear Pokemon</button>
+                    </div>
+                </div>
+            </form>
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; J. P. 2023</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- /.container -->
+        <!-- Java Script Boostrap-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" ></script>
+    </body>
+</html>
+
+
